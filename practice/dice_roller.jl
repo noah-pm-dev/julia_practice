@@ -7,7 +7,7 @@ println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 ## Taking input as one string, splitting into substrings, then assigning 'type' and 'amount' variables from substring array
 
-printstyled("What dice would you like to roll?: "; color = :blue) # Get type and amount from user
+printstyled("What dice would you like to roll? (ex. 2d4): "; color = :blue) # Get type and amount from user
 die = readline()
 
 dieSplit = replace(die, "d" => "-d") # Insert character to use later for splitting string into substrings
@@ -20,6 +20,17 @@ amount = parse(Int64, amountString) # Parse amountString substring to Int64
 
 type = stringSplit[2] # Assign substring at index 2 to new variable
 ##
+
+# Check for invalid type
+if (occursin("4", type) == true || occursin("6", type) == true || occursin("8", type) == true || occursin("10", type) == true || occursin("12", type) == true || occursin("20", type) == true)
+    return
+else
+    printstyled("That is not a valid type of die! Valid types are {d4, d6, d8, d10, d12, d20}\nExited with code 1\n"; color = :red)
+    exit(1)
+end
+
+
+
 
 ## Number generating and counting # of max rolls
 
