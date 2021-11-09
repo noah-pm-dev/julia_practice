@@ -2,15 +2,24 @@ i = 1 # 'i' is used in while loop
 ttl = 0
 numOfMax = 0
 
+
 println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-printstyled("How many dice would you like to roll?: "; color = :blue) # Get amount of dice as string from user
-amount_string = readline()
+## Taking input as one string, splitting into substrings, then assigning 'type' and 'amount' variables from substring array
 
-amount = parse(Int64, amount_string) # Parse amount to Int64
+printstyled("What dice would you like to roll?: "; color = :blue) # Get type and amount from user
+die = readline()
 
-printstyled("What type of dice do you want to roll?: "; color = :green) # Get type of dice from user
-type = readline()
+dieSplit = replace(die, "d" => "-d") # Insert character to use later for splitting string into substrings
+
+stringSplit = split(dieSplit, "-") # Split string at splitter into substrings
+
+amountString = stringSplit[1] # Assign substring at index 1 to new variable
+
+amount = parse(Int64, amountString) # Parse amountString substring to Int64
+
+type = stringSplit[2] # Assign substring at index 2 to new variable
+##
 
 ## Number generating and counting # of max rolls
 
@@ -79,6 +88,7 @@ function rollD20()
     end
     return num
 end
+##
 
 # Main loop
 
@@ -107,6 +117,9 @@ while (i <= amount)
     end
     global i += 1
 end
+##
+
+## Printing final calculations
 
 printstyled("Total: "; color = :green) # Print combined total
 println(ttl)
