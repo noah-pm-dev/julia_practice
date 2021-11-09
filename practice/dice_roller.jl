@@ -26,6 +26,7 @@ if (occursin("4", type) == true || occursin("6", type) == true || occursin("8", 
     return
 else
     printstyled("That is not a valid type of die! Valid types are {d4, d6, d8, d10, d12, d20}\nExited with code 1\n"; color = :red)
+    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)
 end
 
