@@ -1,6 +1,8 @@
 i = 1 # 'i' is used in while loop
-upper = 0
 ttl = 0
+numOfMax = 0
+
+println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 printstyled("How many dice would you like to roll?: "; color = :blue) # Get amount of dice as string from user
 amount_string = readline()
@@ -10,13 +12,16 @@ amount = parse(Int64, amount_string) # Parse amount to Int64
 printstyled("What type of dice do you want to roll?: "; color = :green) # Get type of dice from user
 type = readline()
 
-
+## Number generating and counting # of max rolls
 
 function rollD4()
     upper = 4
     lower = 1
     global num = rand(1:4)
     println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
     return num
 end
 
@@ -25,6 +30,9 @@ function rollD6()
     lower = 1
     global num = rand(1:6)
     println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
     return num
 end
 
@@ -33,6 +41,9 @@ function rollD8()
     lower = 1
     global num = rand(1:8)
     println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
     return num
 end
 
@@ -41,6 +52,9 @@ function rollD10()
     lower = 1
     global num = rand(1:10)
     println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
     return num
 end
 
@@ -49,6 +63,9 @@ function rollD12()
     lower = 1
     global num = rand(1:12)
     println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
     return num
 end
 
@@ -57,10 +74,13 @@ function rollD20()
     lower = 1
     global num = rand(1:20)
     println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
     return num
 end
 
-
+# Main loop
 
 while (i <= amount)
     if (type == "d4")
@@ -88,5 +108,9 @@ while (i <= amount)
     global i += 1
 end
 
-printstyled("Total: "; color = :green)
+printstyled("Total: "; color = :green) # Print combined total
 println(ttl)
+printstyled("Number of maximum rolls: "; color = :green) # Print number of highest possible rolls
+println(numOfMax)
+
+println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
