@@ -5,10 +5,9 @@ numOfMax = 0
 
 println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-## Taking input as one string, splitting into substrings, then assigning 'type' and 'amount' variables from substring array
+## Taking ARGS as one string, splitting into substrings, then assigning 'type' and 'amount' variables from substring array
 
-printstyled("What dice would you like to roll? (ex. 2d4): "; color = :blue) # Get type and amount from user
-die = readline()
+die = ARGS[1] # Assign index 1 of the ARGS variable (stores cmd line args as string array) to the 'die' variable
 
 dieSplit = replace(die, "d" => "+d") # Insert character to use later for splitting string into substrings
 
