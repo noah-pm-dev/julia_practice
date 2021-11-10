@@ -10,11 +10,18 @@ println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 printstyled("What dice would you like to roll? (ex. 2d4): "; color = :blue) # Get type and amount from user
 die = readline()
 
-dieSplit = replace(die, "d" => "-d") # Insert character to use later for splitting string into substrings
+dieSplit = replace(die, "d" => ".d") # Insert character to use later for splitting string into substrings
 
-stringSplit = split(dieSplit, "-") # Split string at splitter into substrings
+stringSplit = split(dieSplit, ".") # Split string at splitter into substrings
 
 amountString = stringSplit[1] # Assign substring at index 1 to new variable
+
+if (tryparse(Int64, amountString) !== nothing && occursin("-", amountString) == false)
+    return
+else
+    printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red)
+    exit(1)
+end
 
 amount = parse(Int64, amountString) # Parse amountString substring to Int64
 
@@ -25,7 +32,7 @@ type = stringSplit[2] # Assign substring at index 2 to new variable
 if (occursin("4", type) == true || occursin("6", type) == true || occursin("8", type) == true || occursin("10", type) == true || occursin("12", type) == true || occursin("20", type) == true)
     return
 else
-    printstyled("That is not a valid type of die! Valid types are {d4, d6, d8, d10, d12, d20}\nExited with code 1\n"; color = :red)
+    printstyled("That is not a valid type of die! Valid types are {d4, d6, d8, d10, d12, d20}\n"; color = :red)
     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)
 end
