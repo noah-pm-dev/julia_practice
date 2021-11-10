@@ -10,9 +10,9 @@ println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 printstyled("What dice would you like to roll? (ex. 2d4): "; color = :blue) # Get type and amount from user
 die = readline()
 
-dieSplit = replace(die, "d" => ".d") # Insert character to use later for splitting string into substrings
+dieSplit = replace(die, "d" => "+d") # Insert character to use later for splitting string into substrings
 
-stringSplit = split(dieSplit, ".") # Split string at splitter into substrings
+stringSplit = split(dieSplit, "+") # Split string at splitter into substrings
 
 amountString = stringSplit[1] # Assign substring at index 1 to new variable
 
@@ -20,6 +20,7 @@ if (tryparse(Int64, amountString) !== nothing && occursin("-", amountString) == 
     return                                                                             # If it is parseable and non-negative, return
 else
     printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red) # If is not parseable, is negative, or both, print error message
+    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)                                                                                       # and exit program
 end
 
