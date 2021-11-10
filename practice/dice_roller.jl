@@ -16,11 +16,11 @@ stringSplit = split(dieSplit, ".") # Split string at splitter into substrings
 
 amountString = stringSplit[1] # Assign substring at index 1 to new variable
 
-if (tryparse(Int64, amountString) !== nothing && occursin("-", amountString) == false)
-    return
+if (tryparse(Int64, amountString) !== nothing && occursin("-", amountString) == false) # Test if amountString is parseable and is not negative
+    return                                                                             # If it is parseable and non-negative, return
 else
-    printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red)
-    exit(1)
+    printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red) # If is not parseable, is negative, or both, print error message
+    exit(1)                                                                                       # and exit program
 end
 
 amount = parse(Int64, amountString) # Parse amountString substring to Int64
