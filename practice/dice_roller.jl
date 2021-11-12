@@ -9,6 +9,14 @@ println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 die = ARGS[1] # Assign index 1 of the ARGS variable (stores cmd line args as string array) to the 'die' variable
 
+if (occursin("+", die) == false && count(i->(i=='d'), die) < 2)
+    return
+else
+    printstyled("Do not use any special characters, and only 1 \"d\" in the argument.\n"; color = :red)
+    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    exit(1)
+end
+
 dieSplit = replace(die, "d" => "+d") # Insert character to use later for splitting string into substrings
 
 stringSplit = split(dieSplit, "+") # Split string at splitter into substrings
@@ -133,6 +141,8 @@ while (i <= amount)
     else
         printstyled("~Invalid Type Error~"; color = :red)
         println()
+        println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        exit(1)
     end
     global i += 1
 end
