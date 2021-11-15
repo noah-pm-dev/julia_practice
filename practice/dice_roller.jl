@@ -37,10 +37,10 @@ type = stringSplit[2] # Assign substring at index 2 to new variable
 ##
 
 # Check for invalid type
-if (occursin("4", type) == true || occursin("6", type) == true || occursin("8", type) == true || occursin("10", type) == true || occursin("12", type) == true || occursin("20", type) == true)
+if (occursin("4", type) == true || occursin("6", type) == true || occursin("8", type) == true || occursin("10", type) == true || occursin("12", type) == true || occursin("20", type) == true || occursin("100", type) == true)
     return
 else
-    printstyled("That is not a valid type of die! Valid types are {d4, d6, d8, d10, d12, d20}\n"; color = :red)
+    printstyled("That is not a valid type of die! Valid types are {d4, d6, d8, d10, d12, d20, or d100}\n"; color = :red)
     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)
 end
@@ -115,6 +115,17 @@ function rollD20()
     end
     return num
 end
+
+function rollD100()
+    upper = 100
+    lower = 1
+    global num = rand(1:100)
+    println(num)
+    if (num == upper)
+        global numOfMax += 1
+    end
+    return num
+end
 ##
 
 # Main loop
@@ -138,6 +149,9 @@ while (i <= amount)
     elseif (type == "d20")
         rollD20()
         global ttl = ttl + num
+    elseif (type == "d100")
+	rollD100()
+	global ttl = ttl + num
     else
         printstyled("~Invalid Type Error~"; color = :red)
         println()
