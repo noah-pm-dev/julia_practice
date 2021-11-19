@@ -23,6 +23,16 @@ stringSplit = split(dieSplit, "+") # Split string at splitter into substrings
 
 amountString = stringSplit[1] # Assign substring at index 1 to new variable
 
+try
+    parse(Int64, amountString)
+catch x
+    printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red)
+    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    exit(1)
+end
+
+
+#=
 if (tryparse(Int64, amountString) !== nothing && occursin("-", amountString) == false) # Test if amountString is parseable and is not negative
     return                                                                             # If it is parseable and non-negative, return
 else
@@ -30,7 +40,7 @@ else
     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)                                                                                       # and exit program
 end
-
+=#
 amount = parse(Int64, amountString) # Parse amountString substring to Int64
 
 maxString = stringSplit[3] # Assign substring at index 3 to new variable
@@ -43,7 +53,6 @@ max = parse(Int64, maxString)
 ## Number generating and counting # of max rolls
 
 function roll(upper)
-    maximum = upper
     global num = rand(1:upper)
     println(num)
     if (num == upper)
