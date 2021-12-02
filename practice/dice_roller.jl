@@ -25,7 +25,7 @@ amountString = stringSplit[1] # Assign substring at index 1 to new variable
 
 try
     parse(Int64, amountString)
-catch x
+catch e
     printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red)
     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)
