@@ -37,6 +37,10 @@ print("\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\
 
 if (fortuneQuery[b] == "fortune")
 	run(pipeline(`fortune`, `cowsay -f $character`))
+elseif (fortuneQuery[b] == "custom text")
+	print("Enter custom text: ")
+	text = readline()
+	run(`cowsay -f $character "$text"`)
 else
 	run(`cowsay -f $character "hello"`)
 end
