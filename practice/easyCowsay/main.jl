@@ -22,8 +22,8 @@ print("\033[A\e[2K\033[A\e[2K\033[A\e[2K") # Clear previous menu
 a = request("Pick a character: ", charMenu) # Request menu charMenu
 print("\033[A\e[2K\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K")
 c = request("Would you like output to be rainbow?", rainbowYNPick) # Request rainbowYNPick menu
-## Translate options the names of which are changed in the choice list.
 
+## Translate options the names of which are changed in the choice list.
 if (charList[a] == "frogs")
 	character = "bud-frogs"
 elseif (charList[a] == "rooster")
@@ -44,6 +44,9 @@ end
 #print("\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K")
 
 baseCMD = ["cowsay", "-f", "$character"]
+
+if (rainbowYN[c] == "YES")
+	
 
 if (fortuneQuery[b] == "custom text")
 	print("\033[A\e[2K\033[A\e[2K\033[A\e[2K")
