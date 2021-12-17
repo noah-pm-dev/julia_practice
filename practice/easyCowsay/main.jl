@@ -3,7 +3,7 @@ using REPL.TerminalMenus
 ## Single Letter Variable List
 # a: requested choice for charList, used in charList[a]
 # b: requested choice for fortuneQuery, used in fortuneQuery[b]
-#
+# C: request choice for rainbowYN, used in rainbowYN[c]
 
 
 
@@ -22,6 +22,8 @@ print("\033[A\e[2K\033[A\e[2K\033[A\e[2K") # Clear previous menu
 a = request("Pick a character: ", charMenu) # Request menu charMenu
 print("\033[A\e[2K\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K")
 c = request("Would you like output to be rainbow?", rainbowYNPick) # Request rainbowYNPick menu
+print("\033[A\e[2K\033[A\e[2K\033[A\e[2K")
+
 
 ## Translate options the names of which are changed in the choice list.
 if (charList[a] == "frogs")
@@ -41,36 +43,32 @@ else
 end
 
 
-#print("\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K\033[A\e[2K")
-
 baseCMD = ["cowsay", "-f", "$character"]
 
 if (rainbowYN[c] == "YES")
-	
+	lolcat = 1
+else
+	lolcat = 0
+end
 
 if (fortuneQuery[b] == "custom text")
-	print("\033[A\e[2K\033[A\e[2K\033[A\e[2K")
 	print("Enter custom text: ")
 	text = readline()
 	push!(baseCMD, "\"$text\"")
 	finalCMD = join(baseCMD, " ")
-	println(typeof(finalCMD))
-	run(`sh -c $finalCMD`)
+	print("\033[A\e[2K")
+	if (lolcat == 1)
+		run(pipeline(`sh -c $finalCMD`, `lolcat`))
+	else
+		run(`sh -c $finalCMD`)
+	end
 elseif (fortuneQuery[b] == "fortune")
 	finalCMD = join(baseCMD, " ")
-	run(pipeline(`fortune`, `sh -c $finalCMD`))
+	if (lolcat == 1)
+		run(pipeline(`fortune`, `sh -c $finalCMD`, `lolcat`))
+	else
+		run(pipeline(`fortune`, `sh -c $finalCMD`))
+	end
 end
 	
-#=
-if (fortuneQuery[b] == "fortune")
-	run(pipeline(`fortune`, `cowsay -f $character`))
-elseif (fortuneQuery[b] == "custom text")
-	print("Enter custom text: ")
-	text = readline()
-	print("\033[A\e[2K")
-	run(`cowsay -f $character "$text"`)
-else
-	run(`cowsay -f $character "hello"`)
-end
-=#
 
