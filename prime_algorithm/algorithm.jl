@@ -3,7 +3,16 @@ if (length(ARGS) != 1)
 	exit()
 end
 
+
 query = ARGS[]
+
+try
+	parse(Int64, query)
+catch f
+	printstyled("Argument must be an integer\n"; color = :red)
+	exit()
+end
+
 
 queryNum = parse(Int64, query) # Parse argument to Int64
 iter = ((queryNum - 2) * (queryNum - 2)) / 2 # Determine how many different pairs of numbers are between the query number and 1 (not including)
