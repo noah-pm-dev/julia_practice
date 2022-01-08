@@ -32,15 +32,6 @@ catch e
 end
 
 
-#=
-if (tryparse(Int64, amountString) !== nothing && occursin("-", amountString) == false) # Test if amountString is parseable and is not negative
-    return                                                                             # If it is parseable and non-negative, return
-else
-    printstyled("That is not a valid amount, amount must be a positive integer.\n"; color = :red) # If is not parseable, is negative, or both, print error message
-    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-    exit(1)                                                                                       # and exit program
-end
-=#
 amount = parse(Int64, amountString) # Parse amountString substring to Int64
 
 maxString = stringSplit[3] # Assign substring at index 3 to new variable
