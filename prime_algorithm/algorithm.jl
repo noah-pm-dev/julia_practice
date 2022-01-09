@@ -15,13 +15,56 @@ end
 
 
 queryNum = parse(Int64, query) # Parse argument to Int64
-iter = ((queryNum - 2) * (queryNum - 2)) / 2 # Determine how many different pairs of numbers are between the query number and 1 (not including)
-println("Query: ", queryNum)
-println("Iterations: ", iter) # Printing amount of iteratiosn for testing purposes
-sleep(5)
+startPoint = trunc(Int64, (queryNum/2))
+println("query: $queryNum; start: $startPoint")
+
+
+if (queryNum % 2 == 0 && queryNum != 2)
+	println("Even numbers cannot be prime!")
+	exit(0)
+elseif (queryNum == 2)
+	println("\n2 is prime!")
+	exit(0)
+end
+
+
+for i in 2:(startPoint + 1)
+	if i == startPoint + 1
+		println("\n$queryNum is prime!")
+		exit(0)
+	end
+
+	isPrime = try
+		Int(queryNum/i)
+		true
+	catch x
+		false
+	end
+
+	println("Tried $queryNum/$i")
+
+	if isPrime
+		println("\n$queryNum is not prime!")
+		exit(0)	
+	end
+
+end
+
+
+
+
+
+
+
+
+#iter = ((queryNum - 2) * (queryNum - 2)) / 2 # Determine how many different pairs of numbers are between the query number and 1 (not including)
+#println("Query: ", queryNum)
+#println("Iterations: ", iter) # Printing amount of iteratiosn for testing purposes
+#sleep(5)
 # Make sure only one argument is accepted
 
 
+#=
 for i in 1:iter
 	#num = string(i) * "\n"
         #write(f, num)
@@ -38,4 +81,4 @@ for i in 1:iter
 	end
 	sleep(0.5)
 end
-
+=#

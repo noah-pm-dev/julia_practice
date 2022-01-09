@@ -12,7 +12,7 @@ die = ARGS[1] # Assign index 1 of the ARGS variable (stores cmd line args as str
 if (occursin("+", die) == false && count(i->(i=='d'), die) < 2)
     return
 else
-    printstyled("Do not use any special characters, and only 1 \"d\" in the argument.\n"; color = :red)
+    printstyled("Correct format is <amount>d<sides>, e.g. 4d7 would roll four seven-sided die\n"; color = :red)
     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     exit(1)
 end
@@ -35,11 +35,17 @@ end
 amount = parse(Int64, amountString) # Parse amountString substring to Int64
 
 maxString = stringSplit[3] # Assign substring at index 3 to new variable
-max = parse(Int64, maxString)
 ##
+#
+try
+   parse(Int64, maxString)
+catch e
+   printstyled("That is not a valid number of sides, must be an integer.\n"; color = :red)
+   println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+   exit(1)
+end
 
-
-
+max = parse(Int64, maxString)
 
 ## Number generating and counting # of max rolls
 
