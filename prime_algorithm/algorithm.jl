@@ -33,6 +33,10 @@ for i in 2:(startPoint + 1)
 		println("\n$queryNum is prime!")
 		exit(0)
 	end
+	
+	if i % 2 == 0
+		continue
+	end
 
 	isPrime = try
 		Int(queryNum/i)
