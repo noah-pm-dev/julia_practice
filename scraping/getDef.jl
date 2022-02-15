@@ -32,9 +32,16 @@ function getDef(searchTerm)
 		try
 			println(Gumbo.text(grammerLP[1]))
 		catch e
+			exit(0)
+		end
+
+		#=		
+		try
+			println(Gumbo.text(grammerLP[1]))
+		catch e
 			println(Gumbo.text(grammerP[1]))
 		end
-				
+		=#		
 
 		for i in defs
 			println(i.attributes["value"], ": ", Gumbo.text(eachmatch(selector3, i)[1]))
@@ -51,4 +58,9 @@ function getDef(searchTerm)
 	
 end
 
-getDef("hello")
+print("Type a word: ")
+query = readline()
+println()
+
+
+getDef(query)
