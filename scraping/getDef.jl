@@ -47,13 +47,10 @@ function getDef(searchTerm)
 			println(i.attributes["value"], ": ", Gumbo.text(eachmatch(selector3, i)[1]))
 		end
 		
-		#println("DEFS: ")
-		#println("typeof defs: ", typeof(defs))
 		
 	end
 	
 
-	#println(sectionList)
 	
 	
 end
