@@ -6,6 +6,8 @@ function getDef(searchTerm)
 	selector3 = sel"span.e1q3nk1v1"	
 	selector4 = sel"span.luna-pos"
 	selector5 = sel"span.pos"	
+	selector6 = sel"span.label"
+	selector7 = sel"span.luna-label"
 
         url = "https://www.dictionary.com/browse/$searchTerm" 
         pageGet = HTTP.get(url)
@@ -25,26 +27,30 @@ function getDef(searchTerm)
 
 		println("\n\n--------------------")
 		
-		grammerLP = eachmatch(selector4, sect)
-		grammerP = eachmatch(selector5, sect)
+		grammarLP = eachmatch(selector4, sect)
+		grammarP = eachmatch(selector5, sect)
+		label = eachmatch(selector6, sect)
+		labelItalic = eachmatch(selector7, sect)
 		defs = eachmatch(selector2, sect)
 		
 		try
-			println(Gumbo.text(grammerLP[1]))
+			print(Gumbo.text(grammarLP[1]))
 		catch e
-			exit(0)
+			print(Gumbo.text(grammarP[1]))
 		end
 
-		#=		
 		try
-			println(Gumbo.text(grammerLP[1]))
+			println(" ", Gumbo.text(label[1]))
 		catch e
-			println(Gumbo.text(grammerP[1]))
+			try
+				println(" ", Gumbo.text(labelItalic[1]))
+			catch x
+				print("\n")
+			end
 		end
-		=#		
 
 		for i in defs
-			println(i.attributes["value"], ": ", Gumbo.text(eachmatch(selector3, i)[1]))
+			println("> ", i.attributes["value"], ": ", Gumbo.text(eachmatch(selector3, i)[1]))
 		end
 		
 		
@@ -55,9 +61,10 @@ function getDef(searchTerm)
 	
 end
 
+#=
 print("Type a word: ")
 query = readline()
 println()
+=#
 
-
-getDef(query)
+getDef(ARGS[1])
